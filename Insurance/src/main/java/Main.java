@@ -11,14 +11,14 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import ua.lviv.lgs.dao.PersonDao;
-import ua.lviv.lgs.dao.implementation.PersonDaoimpl;
+import ua.lviv.lgs.dao.implementation.PersonDaoImpl;
 
 public class Main {
 
 	public static void main(String[] args) {
 		EntityManagerFactory factory=Persistence.createEntityManagerFactory("Primary");
 		EntityManager em=factory.createEntityManager();
-		PersonDao dao = new PersonDaoimpl(em);
+		PersonDao dao = new PersonDaoImpl(em);
 		
 //		em.merge(new Person("Yura", "Smoliy",1990,6));em.merge(new Person("Yura", "Smoliy",1990,6));
 //		em.persist(new Tariff(2));

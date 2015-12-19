@@ -8,10 +8,10 @@ import javax.persistence.Persistence;
 import ua.lviv.lgs.dao.PersonDao;
 import ua.lviv.lgs.entity.Person;
 
-public class PersonDaoimpl implements PersonDao {
+public class PersonDaoImpl implements PersonDao {
 	private EntityManager em;
 
-	public PersonDaoimpl(EntityManager em) {
+	public PersonDaoImpl(EntityManager em) {
 		this.em = em;
 	}
 
