@@ -10,6 +10,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import ua.lviv.lgs.dao.PersonDao;
+import ua.lviv.lgs.dao.implementation.PersonDaoimpl;
+
 public class Main {
 
 	public static void main(String[] args) {
