@@ -1,9 +1,9 @@
 import java.util.List;
 
 interface PersonDao {
-	boolean savePerson(Person person);
+	void savePerson(Person person);
 
-	boolean removePerson(Person person);
+	void removePerson(Person person);
 
 	List<Person> findAllPerson();
 }

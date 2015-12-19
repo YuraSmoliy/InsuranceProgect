@@ -15,7 +15,8 @@ public class Main {
 	public static void main(String[] args) {
 		EntityManagerFactory factory=Persistence.createEntityManagerFactory("Primary");
 		EntityManager em=factory.createEntityManager();
-		em.getTransaction().begin();
+		PersonDao dao = new PersonDaoimpl(em);
+		
 //		em.merge(new Person("Yura", "Smoliy",1990,6));em.merge(new Person("Yura", "Smoliy",1990,6));
 //		em.persist(new Tariff(2));
 //List<Tariff>t=new ArrayList<Tariff>();t.add(em.getReference(Tariff.class, 1));
@@ -27,7 +28,7 @@ public class Main {
 //		Person p=em.find(Person.class,1);p.firstName="aaaa";
 //		em.merge(p);
 		
-		em.getTransaction().commit();
+		
 		em.close();
 		factory.close();
 		System.exit(0);

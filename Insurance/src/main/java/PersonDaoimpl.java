@@ -1,40 +1,36 @@
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 
 public class PersonDaoimpl implements PersonDao {
-	EntityManagerFactory factory=Persistence.createEntityManagerFactory("Primary");
-	
-	public boolean savePerson(Person person) {
-		boolean rez=false;
-	EntityManager em=factory.createEntityManager();
-	em.getTransaction().begin();
-	em.persist(person);
-	rez=true;
-	em.getTransaction().commit();
-		return rez;
+	private EntityManager em;
+
+	public PersonDaoimpl(EntityManager em) {
+		this.em = em;
 	}
 
-	public boolean removePerson(Person person) {
-		boolean rez=false;
-		EntityManager em=factory.createEntityManager();
+	public void savePerson(Person person) {
+
+		em.getTransaction().begin();
+		em.persist(person);
+
+		em.getTransaction().commit();
+
+	}
+
+	public void removePerson(Person person) {
+
 		em.getTransaction().begin();
 		em.remove(person);
-		rez=true;
+
 		em.getTransaction().commit();
-		return rez;
+
 	}
 
 	public List<Person> findAllPerson() {
-		List<Person> rez;
-		EntityManager em=factory.createEntityManager();
-		em.getTransaction().begin();
-		rez=em.createNativeQuery("select from Person").getResultList();
-		
-		return rez;
+
+		return em.createNativeQuery("select from Person").getResultList();
+
 	}
 
 }
