@@ -13,19 +13,20 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.GeneratorType;
 
 @Entity
-public class ÑircsInsurance {
+public class AdditionalConditions {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private String circsInsurance;
-	@OneToMany(cascade = { CascadeType.MERGE, CascadeType.REMOVE }, fetch = FetchType.LAZY,mappedBy="circsInsurance")
+	private String additionalConditions;
+	@OneToMany(cascade = { CascadeType.MERGE, CascadeType.REMOVE }, fetch = FetchType.LAZY, mappedBy = "additionalConditions")
 	private List<Tariff> tariff;
-	public ÑircsInsurance() {
+
+	public AdditionalConditions() {
 	}
 
-	public ÑircsInsurance(String circs) {
+	public AdditionalConditions(String additionalConditions) {
 		super();
-		this.circsInsurance = circs;
+		this.additionalConditions = additionalConditions;
 	}
 
 	public int getId() {
@@ -36,12 +37,12 @@ public class ÑircsInsurance {
 		this.id = id;
 	}
 
-	public String getCircs() {
-		return circsInsurance;
+	public String getAdditionalConditions() {
+		return additionalConditions;
 	}
 
-	public void setCircs(String circs) {
-		this.circsInsurance = circs;
+	public void setAdditionalConditions(String additionalConditions) {
+		this.additionalConditions = additionalConditions;
 	}
 
 	public List<Tariff> getTariff() {
@@ -54,7 +55,8 @@ public class ÑircsInsurance {
 
 	@Override
 	public String toString() {
-		return "Ñircs [id=" + id + ", circs=" + circsInsurance + ", tariff=" + tariff + "]";
+		return "AdditionalConditions [id=" + id + ", additionalConditions="
+				+ additionalConditions + ", tariff=" + tariff + "]";
 	}
 
 }

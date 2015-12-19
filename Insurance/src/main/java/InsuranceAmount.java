@@ -14,13 +14,13 @@ public class InsuranceAmount {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private int sumInsurance;
+	private String sumInsurance;
 	@OneToMany(cascade = { CascadeType.MERGE, CascadeType.REMOVE }, fetch = FetchType.LAZY,mappedBy="insuranceAmount")
 	private List<Tariff> tariff;
 	public InsuranceAmount() {
 	
 	}
-	public InsuranceAmount(int sumInsurance) {
+	public InsuranceAmount(String sumInsurance) {
 		super();
 		this.sumInsurance = sumInsurance;
 	}
@@ -30,10 +30,10 @@ public class InsuranceAmount {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getSumInsurance() {
+	public String getSumInsurance() {
 		return sumInsurance;
 	}
-	public void setSumInsurance(int sumInsurance) {
+	public void setSumInsurance(String sumInsurance) {
 		this.sumInsurance = sumInsurance;
 	}
 	public List<Tariff> getTariff() {

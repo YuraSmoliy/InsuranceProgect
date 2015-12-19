@@ -6,25 +6,25 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Coefficient {
+public class Franchise {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private String type;
-	@OneToMany(cascade = { CascadeType.MERGE, CascadeType.REMOVE }, fetch = FetchType.LAZY,mappedBy="coefficient")
+	private String sumFranchise;
+	@OneToMany(cascade = { CascadeType.MERGE, CascadeType.REMOVE }, fetch = FetchType.LAZY, mappedBy = "franchise")
 	private List<Tariff> tariff;
 
-	public Coefficient() {
+	public Franchise() {
 
 	}
 
-	public Coefficient(String type) {
+	public Franchise(String sumFranchise) {
 		super();
-		this.type = type;
+		this.sumFranchise = sumFranchise;
 	}
 
 	public int getId() {
@@ -35,12 +35,12 @@ public class Coefficient {
 		this.id = id;
 	}
 
-	public String getType() {
-		return type;
+	public String getSumFranchise() {
+		return sumFranchise;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setSumFranchise(String sumFranchise) {
+		this.sumFranchise = sumFranchise;
 	}
 
 	public List<Tariff> getTariff() {
@@ -53,7 +53,8 @@ public class Coefficient {
 
 	@Override
 	public String toString() {
-		return "Coefficient [id=" + id + ", type=" + type + ", tariff=" + tariff + "]";
+		return "Franchise [id=" + id + ", suFranchise=" + sumFranchise
+				+ ", tariff=" + tariff + "]";
 	}
 
 }

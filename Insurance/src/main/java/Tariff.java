@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Tariff {
@@ -18,154 +20,129 @@ public class Tariff {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REMOVE }, fetch = FetchType.LAZY)
-	private Coefficient coefficient;
+	private Program program;
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REMOVE }, fetch = FetchType.LAZY)
-	private Franchyza franchyza;
+	private Franchise franchise;
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REMOVE }, fetch = FetchType.LAZY)
 	private Zone zone;
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REMOVE }, fetch = FetchType.LAZY)
-	private ÑircsInsurance circsInsurance;
+	private AdditionalConditions additionalConditions;
 	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.REMOVE }, fetch = FetchType.LAZY)
 	private InsuranceAmount insuranceAmount;
 	private int limitDay;
+	@Temporal(TemporalType.DATE)
 	private Calendar fromDate;
-	private Calendar antilDate;
+	@Temporal(TemporalType.DATE)
+	private Calendar untilDate;
 	private int cost;
 	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.REMOVE }, fetch = FetchType.LAZY, mappedBy = "tariff")
 	private List<Person> person;
 
-	
+	public Tariff() {
+		// TODO Auto-generated constructor stub
+	}
 
-	
-	public Tariff(int limitDay, Calendar fromDate, Calendar antilDate) {
-	
+	public Tariff(int limitDay, Calendar fromDate, Calendar untilDate, int cost) {
+		super();
 		this.limitDay = limitDay;
 		this.fromDate = fromDate;
-		this.antilDate = antilDate;
+		this.untilDate = untilDate;
+		this.cost = cost;
 	}
-
-
-
-	public Tariff() {
-
-	}
-
-
 
 	public int getId() {
 		return id;
 	}
 
-
-
 	public void setId(int id) {
 		this.id = id;
 	}
 
-
-
-	public Coefficient getCoefficient() {
-		return coefficient;
+	public Program getProgram() {
+		return program;
 	}
 
-
-
-	public void setCoefficient(Coefficient coefficient) {
-		this.coefficient = coefficient;
+	public void setProgram(Program program) {
+		this.program = program;
 	}
 
-
-
-	public Franchyza getFranchyza() {
-		return franchyza;
+	public Franchise getFranchise() {
+		return franchise;
 	}
 
-
-
-	public void setFranchyza(Franchyza franchyza) {
-		this.franchyza = franchyza;
+	public void setFranchise(Franchise franchise) {
+		this.franchise = franchise;
 	}
-
-
 
 	public Zone getZone() {
 		return zone;
 	}
 
-
-
 	public void setZone(Zone zone) {
 		this.zone = zone;
 	}
 
-
-
-	public ÑircsInsurance getCircs() {
-		return circsInsurance;
+	public AdditionalConditions getAdditionalConditions() {
+		return additionalConditions;
 	}
 
-
-
-	public void setCircs(ÑircsInsurance circs) {
-		this.circsInsurance = circs;
+	public void setAdditionalConditions(
+			AdditionalConditions additionalConditions) {
+		this.additionalConditions = additionalConditions;
 	}
-
-
 
 	public InsuranceAmount getInsuranceAmount() {
 		return insuranceAmount;
 	}
 
-
-
 	public void setInsuranceAmount(InsuranceAmount insuranceAmount) {
 		this.insuranceAmount = insuranceAmount;
 	}
-
-
 
 	public int getLimitDay() {
 		return limitDay;
 	}
 
-
-
 	public void setLimitDay(int limitDay) {
 		this.limitDay = limitDay;
 	}
 
+	public Calendar getFromDate() {
+		return fromDate;
+	}
 
+	public void setFromDate(Calendar fromDate) {
+		this.fromDate = fromDate;
+	}
+
+	public Calendar getUntilDate() {
+		return untilDate;
+	}
+
+	public void setUntilDate(Calendar untilDate) {
+		this.untilDate = untilDate;
+	}
 
 	public int getCost() {
 		return cost;
 	}
 
-
-
 	public void setCost(int cost) {
 		this.cost = cost;
 	}
-
-
 
 	public List<Person> getPerson() {
 		return person;
 	}
 
-
-
 	public void setPerson(List<Person> person) {
 		this.person = person;
 	}
 
-
-
 	@Override
 	public String toString() {
-		return "Tariff [id=" + id + ", coefficient=" + coefficient + ", franchyza=" + franchyza + ", zone=" + zone
-				+ ", circs=" + circsInsurance + ", insuranceAmount=" + insuranceAmount + ", limitDay=" + limitDay
-				+ ", cost=" + cost + ", person=" + person + "]";
+		return "Tariff [limitDay=" + limitDay + ", fromDate=" + fromDate
+				+ ", untilDate=" + untilDate + ", cost=" + cost + "]";
 	}
 
-	
 }

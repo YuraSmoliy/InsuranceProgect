@@ -6,47 +6,55 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+
 import javax.persistence.OneToMany;
 
 @Entity
-public class Franchyza {
+public class Program {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	private int sumFranchyza;
-	@OneToMany(cascade = { CascadeType.MERGE, CascadeType.REMOVE }, fetch = FetchType.LAZY,mappedBy="franchyza")
+	private String program;
+	@OneToMany(cascade = { CascadeType.MERGE, CascadeType.REMOVE }, fetch = FetchType.LAZY, mappedBy = "program")
 	private List<Tariff> tariff;
-	public Franchyza() {
-	
+
+	public Program() {
+
 	}
-	
-	public Franchyza(int sumFranchyza) {
+
+	public Program(String type) {
 		super();
-		this.sumFranchyza = sumFranchyza;
+		this.program = program;
 	}
 
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getSumFranchyza() {
-		return sumFranchyza;
+
+	public String getProgram() {
+		return program;
 	}
-	public void setSumFranchyza(int sumFranchyza) {
-		this.sumFranchyza = sumFranchyza;
+
+	public void setType(String type) {
+		this.program = program;
 	}
+
 	public List<Tariff> getTariff() {
 		return tariff;
 	}
+
 	public void setTariff(List<Tariff> tariff) {
 		this.tariff = tariff;
 	}
+
 	@Override
 	public String toString() {
-		return "Franchyza [id=" + id + ", sumFranchyza=" + sumFranchyza + ", tariff=" + tariff + "]";
+		return "Program [id=" + id + ", program=" + program + ", tariff="
+				+ tariff + "]";
 	}
-	
+
 }
