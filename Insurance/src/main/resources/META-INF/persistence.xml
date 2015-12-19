@@ -4,11 +4,11 @@
 	<persistence-unit name="Primary">
 		<class>Person</class>
 		<class>Tariff</class>
-		<class>СircsInsurance</class>
+		<class>AdditionalConditions</class>
 		<class>Zone</class>
 		<class>InsuranceAmount</class>
-		<class>Franchyza</class>
-		<class>Coefficient</class>
+		<class>Franchise</class>
+		<class>Program</class>
 		
 		<properties>
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
