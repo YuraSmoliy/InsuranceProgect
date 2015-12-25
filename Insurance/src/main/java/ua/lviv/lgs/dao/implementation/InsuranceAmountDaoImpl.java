@@ -8,10 +8,11 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import ua.lviv.lgs.dao.InsuranceAmount;
+import ua.lviv.lgs.dao.InsuranceAmountDao;
+import ua.lviv.lgs.entity.InsuranceAmount;
 
 @Repository
-public class InsuranceAmountDaoImpl implements InsuranceAmount {
+public class InsuranceAmountDaoImpl implements InsuranceAmountDao {
 	@PersistenceContext(unitName = "Primary")
 	private EntityManager em;
 
@@ -26,9 +27,9 @@ public class InsuranceAmountDaoImpl implements InsuranceAmount {
 	}
 
 	@Transactional
-	public List<InsuranceAmount> findAllInsuranceAmount() {
+	public List<InsuranceAmountDao> findAllInsuranceAmount() {
 
-		return em.createQuery("from InsuranceAmount", InsuranceAmount.class).getResultList();
+		return em.createQuery("from InsuranceAmount", InsuranceAmountDao.class).getResultList();
 	}
 
 	@Transactional
@@ -38,9 +39,11 @@ public class InsuranceAmountDaoImpl implements InsuranceAmount {
 	}
 
 	@Transactional
-	public InsuranceAmount findInsuranceAmountById(int id) {
-		return em.createQuery("from InsuranceAmount where id like :id", InsuranceAmount.class).setParameter("id", id)
+	public InsuranceAmountDao findInsuranceAmountById(int id) {
+		return em.createQuery("from InsuranceAmount where id like :id", InsuranceAmountDao.class).setParameter("id", id)
 				.getSingleResult();
 	}
+
+	
 
 }

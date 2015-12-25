@@ -2,14 +2,16 @@ package ua.lviv.lgs.dao;
 
 import java.util.List;
 
-public interface InsuranceAmount {
+import ua.lviv.lgs.entity.InsuranceAmount;
+
+public interface InsuranceAmountDao {
 	void saveInsuranceAmount(InsuranceAmount insuranceAmount);
 
 	void removeInsuranceAmount(InsuranceAmount insuranceAmount);
 
 	void updateInsuranceAmount(InsuranceAmount insuranceAmount);
 
-	InsuranceAmount findInsuranceAmountById(int id);
+	InsuranceAmountDao findInsuranceAmountById(int id);
 
-	List<InsuranceAmount> findAllInsuranceAmount();
+	List<InsuranceAmountDao> findAllInsuranceAmount();
 }
