@@ -49,4 +49,9 @@ public class PersonDaoImpl implements PersonDao {
 		return em.createQuery("from Person where id like :id", Person.class).setParameter("id", id).getSingleResult();
 	}
 
+	public List<Person> findAllPersonOfDateRegistration() {
+		
+		return em.createNamedQuery("Person.findAllPersonOfDateRegistration", Person.class).getResultList();
+	}
+
 }

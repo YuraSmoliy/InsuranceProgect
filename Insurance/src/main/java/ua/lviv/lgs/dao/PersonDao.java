@@ -14,4 +14,6 @@ public interface PersonDao {
 	Person findPersonById(int id);
 
 	List<Person> findAllPerson();
+	
+	List<Person> findAllPersonOfDateRegistration();
 }

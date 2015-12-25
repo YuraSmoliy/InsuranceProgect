@@ -11,12 +11,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 @Table
+@NamedQueries({
+	
+	@NamedQuery(name = "Person.findByDate", query = "select a from Person a where a.dateOfRegistration = :dateRegistration")
+	 })
 public class Person {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
