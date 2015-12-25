@@ -1,39 +1,50 @@
 package ua.lviv.lgs.dao.implementation;
 
-
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import ua.lviv.lgs.dao.ZoneDao;
+
 import ua.lviv.lgs.entity.Zone;
 
+@Repository
 public class ZoneDaoImpl implements ZoneDao {
+	@PersistenceContext(unitName = "Primary")
 	private EntityManager em;
 
-	public ZoneDaoImpl(EntityManager em) {
-		super();
-		this.em = em;
-	}
+	@Transactional
+	public void saveZone(Zone zone) {
 
-	public void saveFranchise(Zone zone) {
-		em.getTransaction().begin();
 		em.persist(zone);
 
-		em.getTransaction().commit();
-
 	}
 
-	public void removeFranchise(Zone zone) {
-		em.getTransaction().begin();
+	@Transactional
+	public void removeZone(Zone zone) {
+
 		em.remove(zone);
 
-		em.getTransaction().commit();
+	}
+
+	@Transactional
+	public List<Zone> findAllZone() {
+		return em.createQuery("from Zone", Zone.class).getResultList();
+	}
+
+	@Transactional
+	public void updateZone(Zone zone) {
+		em.merge(zone);
 
 	}
 
-	public List<Zone> findAllZone() {
-		return em.createNativeQuery("select from Zone").getResultList();
+	@Transactional
+	public Zone findZoneById(int id) {
+		return em.createQuery("from Zone where id like :id", Zone.class).setParameter("id", id).getSingleResult();
 	}
 
 }

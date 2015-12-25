@@ -1,39 +1,50 @@
 package ua.lviv.lgs.dao.implementation;
 
-
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import ua.lviv.lgs.dao.ProgramDao;
+
 import ua.lviv.lgs.entity.Program;
 
+@Repository
 public class ProgramDaoImpl implements ProgramDao {
+	@PersistenceContext(unitName = "Primary")
 	private EntityManager em;
 
-	public ProgramDaoImpl(EntityManager em) {
-		super();
-		this.em = em;
-	}
+	@Transactional
+	public void saveProgram(Program program) {
 
-	public void saveFranchise(Program program) {
-		em.getTransaction().begin();
 		em.persist(program);
 
-		em.getTransaction().commit();
-
 	}
 
-	public void removeFranchise(Program program) {
-		em.getTransaction().begin();
+	@Transactional
+	public void removeProgram(Program program) {
+
 		em.remove(program);
 
-		em.getTransaction().commit();
+	}
+
+	@Transactional
+	public List<Program> findAllProgram() {
+		return em.createQuery("from Program", Program.class).getResultList();
+	}
+
+	@Transactional
+	public void updateProgram(Program program) {
+		em.merge(program);
 
 	}
 
-	public List<Program> findAllProgram() {
-		return em.createNativeQuery("select from Program").getResultList();
+	@Transactional
+	public Program findProgramById(int id) {
+		return em.createQuery("from Program where id like :id", Program.class).setParameter("id", id).getSingleResult();
 	}
 
 }

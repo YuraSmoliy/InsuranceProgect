@@ -3,32 +3,44 @@ package ua.lviv.lgs.dao.implementation;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import ua.lviv.lgs.dao.InsuranceAmount;
 
+@Repository
 public class InsuranceAmountDaoImpl implements InsuranceAmount {
+	@PersistenceContext(unitName = "Primary")
 	private EntityManager em;
 
-	public InsuranceAmountDaoImpl(EntityManager em) {
-		this.em = em;
-	}
+	@Transactional
 	public void saveInsuranceAmount(InsuranceAmount insuranceAmount) {
-		em.getTransaction().begin();
 		em.persist(insuranceAmount);
-		em.getTransaction().commit();
-
 	}
 
+	@Transactional
 	public void removeInsuranceAmount(InsuranceAmount insuranceAmount) {
-		em.getTransaction().begin();
 		em.remove(insuranceAmount);
-		em.getTransaction().commit();
+	}
+
+	@Transactional
+	public List<InsuranceAmount> findAllInsuranceAmount() {
+
+		return em.createQuery("from InsuranceAmount", InsuranceAmount.class).getResultList();
+	}
+
+	@Transactional
+	public void updateInsuranceAmount(InsuranceAmount insuranceAmount) {
+		em.merge(insuranceAmount);
 
 	}
 
-	public List<InsuranceAmount> findAllInsuranceAmount() {
-		// TODO Auto-generated method stub
-		 return em.createNativeQuery("select from InsuranceAmount").getResultList();
+	@Transactional
+	public InsuranceAmount findInsuranceAmountById(int id) {
+		return em.createQuery("from InsuranceAmount where id like :id", InsuranceAmount.class).setParameter("id", id)
+				.getSingleResult();
 	}
 
 }

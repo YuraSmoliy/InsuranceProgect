@@ -8,6 +8,11 @@ public interface AdditionalConditionsDao {
 	void saveAdditionalConditions(AdditionalConditions additionalConditions);
 
 	void removeAdditionalConditions(AdditionalConditions additionalConditions);
+	
+	void updateAdditionalConditions(AdditionalConditions additionalConditions);
+	
+	AdditionalConditions findAdditionalConditionsById (int id);
 
 	List<AdditionalConditions> findAllAdditionalConditions();
+	
 }

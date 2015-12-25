@@ -1,42 +1,52 @@
 package ua.lviv.lgs.dao.implementation;
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+
+import javax.persistence.PersistenceContext;
+
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import ua.lviv.lgs.dao.PersonDao;
 import ua.lviv.lgs.entity.Person;
 
+@Repository
 public class PersonDaoImpl implements PersonDao {
+	@PersistenceContext(unitName = "Primary")
 	private EntityManager em;
 
-	public PersonDaoImpl(EntityManager em) {
-		this.em = em;
-	}
-
+	@Transactional
 	public void savePerson(Person person) {
 
-		em.getTransaction().begin();
 		em.persist(person);
 
-		em.getTransaction().commit();
-
 	}
 
+	@Transactional
 	public void removePerson(Person person) {
 
-		em.getTransaction().begin();
 		em.remove(person);
-
-		em.getTransaction().commit();
 
 	}
 
+	@Transactional
 	public List<Person> findAllPerson() {
 
-		return em.createNativeQuery("select from Person").getResultList();
+		return em.createQuery("from Person", Person.class).getResultList();
 
+	}
+
+	@Transactional
+	public void updatePerson(Person person) {
+		em.merge(person);
+
+	}
+
+	@Transactional
+	public Person findPersonById(int id) {
+		return em.createQuery("from Person where id like :id", Person.class).setParameter("id", id).getSingleResult();
 	}
 
 }

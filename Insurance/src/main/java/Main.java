@@ -18,7 +18,7 @@ public class Main {
 	public static void main(String[] args) {
 		EntityManagerFactory factory=Persistence.createEntityManagerFactory("Primary");
 		EntityManager em=factory.createEntityManager();
-		PersonDao dao = new PersonDaoImpl(em);
+	
 		
 //		em.merge(new Person("Yura", "Smoliy",1990,6));em.merge(new Person("Yura", "Smoliy",1990,6));
 //		em.persist(new Tariff(2));

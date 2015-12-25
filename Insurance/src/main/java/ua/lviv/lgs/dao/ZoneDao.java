@@ -1,16 +1,18 @@
 package ua.lviv.lgs.dao;
 
-
 import java.util.List;
+
 
 import ua.lviv.lgs.entity.Zone;
 
-
-
 public interface ZoneDao {
-	void saveFranchise(Zone zone);
+	void saveZone(Zone zone);
 
-	void removeFranchise(Zone zone);
+	void removeZone(Zone zone);
+
+	void updateZone(Zone zone);
+
+	Zone findZoneById(int id);
 
 	List<Zone> findAllZone();
 }
